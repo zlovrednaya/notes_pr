@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom/client';
 import {  BrowserRouter as Router,Route, Routes} from "react-router-dom";
 import HelloReact from './components/HelloReact';
 import Home from "./components/Home";
-import Login from './components/Forms/Login';
+//import Login from './components/Forms/Login';
 //import GetStarted from './Forms/Login';
-import Register from './components/Forms/Register';
+//import Register from './components/Forms/Register';
 /*class App extends Component {
   render() {
       return (
@@ -31,8 +31,7 @@ import Register from './components/Forms/Register';
       
         <Routes>
         <Route path ="/" element={<HelloReact />} />
-        <Route path ="login" element={<Login />} />
-        <Route path ="register" element={<Register />} />
+    
         </Routes>
       
     );
