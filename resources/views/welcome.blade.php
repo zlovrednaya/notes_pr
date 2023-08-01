@@ -19,9 +19,21 @@
         <div id="cells"> </div>
         <div id="cells_expanded"> </div>
 
+        <table>
+            <div id="table" data-list={{json_encode($notes)}}>
+        @foreach ($notes as $note)
+                            <tr>
+                                <td>{{ $note->id }}</td>
+                                <td class="inner-table">{{ $note->title }}</td>
+                                <td class="inner-table">{{ $note->content }}</td>
+                                <td class="inner-table">{{ $note->created_at }}</td>
+                            </tr>
+        @endforeach
+</table>
     </div>
 
     <div id = "footer"> </div>
+
 
 
     <script src="{{asset('js/app.js')}}"></script>
