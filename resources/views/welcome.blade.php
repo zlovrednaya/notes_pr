@@ -24,15 +24,15 @@
 
     <div id="table_part">
         <span class="span-elt">Список заметок</span>
-        <div id="add_part"><span class="span-elt new">Добавить заметку</span></div>
+        <div id="add_part"><span class="span-elt new"><div class="action-elt" onClick={activateAddForm}>Добавить заметку</div></span></div>
         <table class="table-elt">
             @foreach ($notes as $note)
                 <tr class="tr-table">
                     <td class="inner-table-0">{{ $note->id }}</td>
                     <td class="inner-table-1">{{ $note->title }}</td>
-                    <td class="inner-table-2">show</td>
-                    <td class="inner-table-3">edit</td>
-                    <td class="inner-table-4">delete</td>
+                    <td class="inner-table-2 action-elt" type="button"  onclick="add(id={{$note->id}})">show</td>
+                    <td class="inner-table-3 action-elt">edit</td>
+                    <td class="inner-table-4 action-elt">delete</td>
                 
                 </tr>
                 

@@ -47,3 +47,6 @@ if (document.getElementById('table-react')) {
 export default App;
 
 
+function add(){
+  alert(123132);
+}

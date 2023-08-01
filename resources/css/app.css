@@ -5,7 +5,7 @@ div{
 .h-center{
     text-align: center;
    
-  background: -webkit-linear-gradient(#c6e1ff, #333);
+  background: -webkit-linear-gradient(#e0f5ff, #2d90d5);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -16,6 +16,10 @@ div{
     left:30%;
     display: block;
     position: absolute;
+}
+
+.action-elt:hover{
+cursor: pointer;
 }
 
 .span-elt{
