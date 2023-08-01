@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>This way</title>
+    <title>Notespro</title>
     @viteReactRefresh
     @vite('resources/js/app.js')
 </head>
@@ -19,18 +19,27 @@
         <div id="cells"> </div>
         <div id="cells_expanded"> </div>
 
-        <table>
-            <div id="table" data-list={{json_encode($notes)}}>
-        @foreach ($notes as $note)
-                            <tr>
-                                <td>{{ $note->id }}</td>
-                                <td class="inner-table">{{ $note->title }}</td>
-                                <td class="inner-table">{{ $note->content }}</td>
-                                <td class="inner-table">{{ $note->created_at }}</td>
-                            </tr>
-        @endforeach
-</table>
+        
     </div>
+
+    <div id="table_part">
+        <span class="span-elt">Список заметок</span>
+        <div id="add_part"><span class="span-elt new">Добавить заметку</span></div>
+        <table class="table-elt">
+            @foreach ($notes as $note)
+                <tr class="tr-table">
+                    <td class="inner-table-0">{{ $note->id }}</td>
+                    <td class="inner-table-1">{{ $note->title }}</td>
+                    <td class="inner-table-2">show</td>
+                    <td class="inner-table-3">edit</td>
+                    <td class="inner-table-4">delete</td>
+                
+                </tr>
+                
+            @endforeach
+        </table>
+    </div>
+    <div class="moveToCurrent"></div>
 
     <div id = "footer"> </div>
 
