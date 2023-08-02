@@ -5,7 +5,9 @@ import HelloReact from './components/HelloReact';
 import Home from "./components/Home";
 import Offset from "./components/Offset";
 import PageModel from "./components/PageModel";
+import NotesAdd from "./components/NotesAdd";
 import NotesContent from "./components/NotesContent";
+import NotesAddButton from "./components/NotesAddButton";
 import axios from 'axios'
 
   class App extends React.Component {
@@ -35,6 +37,8 @@ if(offsetElt){
           <Offset offsetData={offsetData} />
         );
 }
+
+
 
 
 /*

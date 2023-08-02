@@ -23,3 +23,6 @@ Route::Get('/offsetUpdate','App\Http\Controllers\NotesController@showOffset');
 
 Route::Post('/shownote','App\Http\Controllers\NotesController@redirectNote');
 Route::Get('/note','App\Http\Controllers\NotesController@showNote');
+
+Route::Post('/editnote','App\Http\Controllers\NotesController@editNote');
+Route::Post('/delnote','App\Http\Controllers\NotesController@delNote');

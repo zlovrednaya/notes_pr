@@ -25,13 +25,17 @@
 
     <div id="table_part">
         <span class="span-elt">Список заметок</span>
-        <div id="add_part"><span class="span-elt new"><div class="action-elt" onClick={activateAddForm}>Добавить заметку</div></span></div>
+        <div id="add_part"></div>
         <div class="table-container" >
             @include('table') 
         </div>
         <div id="react-pagination-button"></div>
-      <div id="offsetEl" offset="{{$currOffset}}">next page></span>
+      <div id="offsetEl" offset="{{$currOffset}}">next page></div>
     </div>
+
+    <div id="table_edit"></div>
+
+    
 
    
     <div class="moveToCurrent"></div>
