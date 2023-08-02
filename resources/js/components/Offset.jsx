@@ -3,6 +3,8 @@ import axios from "axios";
 import React, { Component,useState } from "react";
 import ReactDOM from 'react-dom';
 import PageModel from "./PageModel";
+import NotesContent from './NotesContent';
+
 
 
 class Offset extends Component {
@@ -11,17 +13,24 @@ class Offset extends Component {
         super(props);
 
         this.state = {
-            count: 1
+            count: 1,
+            notes:[],
+            currentPage:1
+        
         };
 
     };
 
     handleIncrement(params){
-        let offset=parseInt(params.currentTarget.getAttribute('offset'));
-        offset ++;
+       // let offset=parseInt(params.currentTarget.getAttribute('offset'));
+       // offset ++;
+      
     debugger;
-        this.setState(() => ({ count: offset }))
-    
+    let offset = this.state.count ;
+        this.setState(() => ({
+              count:offset++ 
+            }))
+       
         this.notifyServer(offset);
     };
 
@@ -31,28 +40,51 @@ class Offset extends Component {
             data:{offset: offset},
         })
         .then((response) => {
-        console.log(response);
-        this.setState(() => ({
-            notes: response.data.notes,
-            currentPage: response.data.offset,
-        
-        }));
+            console.log(response);
+            if(response){
+                this.setState(() => ({
+                    notes: response.data.notes,
+                    currentPage: response.data.offset,
+                    count:response.data.offset+1
+                
+                }));
+                console.log(this.state);
+            }
         });
 
     };
 
- 
 
     render() {
-      //  const Notes = this.state.notes.map(note => (
-//			<NotesContent key={note.id} post={note} />
-//		));
+        /*if(this.state.notes){
+            const Notes2 = this.state.notes.map((note) => (
+                <div>wewer</div>
+            ));
+           
+        } else{
+            const Notes2 = "";
+        }*/
+
+        const Notes= this.state.notes.map((note) => (
+            <div>
+                 <table class="table-elt">
+                <NotesContent
+                id = {note.id}
+                title={note.title}
+                created_at={note.created_at}    />
+                </table>
+                </div>
+        ));
+        const NotesContent2 = (props) => (
+            <div>hahaha </div>
+          );
     
 
         return (
         <div>
-        <span class="span-elt do action-elt" id="offsetEl" onClick={this.handleIncrement}>next page>>></span>
-        
+             {Notes}
+           
+            <span class="span-elt do action-elt" id="offsetEl" onClick={this.handleIncrement.bind(this)}>next page>>></span>
         </div>
     );
     }

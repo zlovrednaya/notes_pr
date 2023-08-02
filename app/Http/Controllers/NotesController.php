@@ -37,10 +37,10 @@ class NotesController extends Controller{
 
         return [
             'status' => "success",
-            'data' => [
-                'notes' => $notes,
-                'offset' =>$offset
-            ]
+            
+            'notes' => $notes,
+            'offset' =>$offset
+            
         ]; 
        /* return response()->json(
         

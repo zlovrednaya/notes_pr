@@ -19,7 +19,7 @@ class Notes extends Model {
         ->select('*')
         ->orderBy('created_at','desc')
         ->limit(($limit)?$limit:false)
-        ->offset($offset)
+        ->offset($offset*$limit)
         ->get();
         return $data;
     }
