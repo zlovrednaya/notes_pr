@@ -18,13 +18,13 @@ class Offset extends Component {
     handleIncrement(params){
         let offset=parseInt(params.currentTarget.getAttribute('offset'));
         offset ++;
-    
+    debugger;
         this.setState(() => ({ count: offset }))
     
         this.notifyServer(offset);
     };
 
-    notifyServer(offset){
+    /*notifyServer(offset){
         let d = offset;
         const response = await axios.post("http://127.0.0.1:8000/offsetUpdate", {
             data:{offset: offset},
@@ -38,7 +38,7 @@ class Offset extends Component {
         }));
         });
 
-    };
+    };*/
 
  
 

@@ -1,3 +1,4 @@
+/*
 // frontent/src/components/Home.js
 import axios from "axios";
 import React, { Component,useState } from "react";
@@ -20,7 +21,7 @@ import ReactDOM from 'react-dom';
 }*/
 
 
-
+/*
 async function getNotesData(pageNum){
     
 
@@ -30,7 +31,7 @@ async function getNotesData(pageNum){
        /* this.setState(() => ({
             posts: response.data.notes,
             currentPage: response.data.offset,
-        }));*/
+        }));
       } catch (error) {
         console.log(error);
       }
@@ -74,5 +75,5 @@ function Offset(props) {
   const root = ReactDOM.createRoot( document.getElementById('headerLeft'));
   root.render(<Home />);
 }*/
-
-export default Offset;
+/*
+export default Offset;*/
