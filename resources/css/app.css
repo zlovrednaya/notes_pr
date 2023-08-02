@@ -29,6 +29,17 @@ cursor: pointer;
     font-size: 20px;
     text-decoration: underline #d7cffe;
 }
+.span-elt-text{
+    display: block;
+    text-align: left;
+    font-weight: bold;
+    font-size: 15px;
+    
+}
+.div-pad{
+    padding: 15px 10px 15px 15px;
+   
+}
 .span-elt.new{
     text-decoration: underline #cffeef;
 }

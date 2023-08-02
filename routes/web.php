@@ -20,3 +20,6 @@ use Illuminate\Support\Facades\Route;
 Route::resource('/', 'App\Http\Controllers\NotesController');
 Route::Post('/offsetUpdate','App\Http\Controllers\NotesController@setOffset');
 Route::Get('/offsetUpdate','App\Http\Controllers\NotesController@showOffset');
+
+Route::Post('/shownote','App\Http\Controllers\NotesController@redirectNote');
+Route::Get('/note','App\Http\Controllers\NotesController@showNote');

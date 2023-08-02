@@ -2,9 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 
+
 class PageModel extends React.Component {
 
 
+	showData(){
+		debugger;
+
+	}
 	render() {
 		
 

@@ -23,6 +23,13 @@ class Notes extends Model {
         ->get();
         return $data;
     }
+    public static function getNotesById($id){
+        $data =  DB::table(self::$table_class)
+         ->select('*')
+         ->where('id',(int)$id)
+         ->get();
+         return $data;
+     }
     //public static function all(){
 
     //}

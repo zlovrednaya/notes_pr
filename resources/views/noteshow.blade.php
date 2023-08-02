@@ -9,8 +9,7 @@
     @vite('resources/js/app.js')
 </head>
 <body>
-   <!----<div id="root"></div>   
-   --->
+
     <div id ="header">
         <div id="headerLeft"></div>
         <div id="headerRight"></div>
@@ -24,15 +23,17 @@
 
 
     <div id="table_part">
-        <span class="span-elt">Список заметок</span>
-        <div id="add_part"><span class="span-elt new"><div class="action-elt" onClick={activateAddForm}>Добавить заметку</div></span></div>
-        <div class="table-container" >
-            @include('table') 
+    @foreach ($note as $n)
+        <span class="span-elt">Заметка # {{ $n->id }}</span>
+        <span class="span-elt new">Редактировать</span>
+        <div class="div-pad">
+            <span class="span-elt-text">Название: {{ $n->title }}</span>
+            <span class="span-elt-text">Описание: {{ $n->content }}</span>
+            <span class="span-elt-text">Создана: {{ $n->created_at }}</span>
         </div>
-        <div id="react-pagination-button"></div>
-      <div id="offsetEl" offset="{{$currOffset}}">next page></span>
+        @endforeach   
     </div>
-
+   
    
     <div class="moveToCurrent"></div>
 

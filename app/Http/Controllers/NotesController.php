@@ -25,6 +25,27 @@ class NotesController extends Controller{
     
     }
 
+    //данные по заметке
+    public function redirectNote(Request $request){
+        $data = $request->data;
+        if(isset($data['id'])){
+        return redirect()->away('http://127.0.0.1:8000/note?id='.$data['id'])->with('_blank');
+        }
+        
+    }
+    public function showNote(Request $request){
+        $id = $request->id;
+        if($id){
+            $note = Notes::getNotesById($id);
+            return view('noteshow',['note'=>$note]);
+        }else{
+            return [
+                'status' => "false",
+                'error'=>'нет данных'
+            ];
+        }
+        
+    }
     //динамически обновляет список для пагинации
     public function setOffset(Request $request){
         $data = $request->data;
