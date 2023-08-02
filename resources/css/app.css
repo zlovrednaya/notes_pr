@@ -11,6 +11,14 @@ div{
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+.form-elt{
+    width: 100%;
+    position: relative;
+    align-content: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
 #table_part{
     border:5px solid #e0f5ff;
     border-radius: 30px;
@@ -20,7 +28,7 @@ div{
     position: absolute;
 }
 .form-left{
-    width:25%;
+    width:50%;
     left:10px;
     position: relative;
 }

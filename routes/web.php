@@ -26,3 +26,5 @@ Route::Get('/note','App\Http\Controllers\NotesController@showNote');
 
 Route::Post('/editnote','App\Http\Controllers\NotesController@editNote');
 Route::Post('/delnote','App\Http\Controllers\NotesController@delNote');
+
+Route::Post('/editnote/submit','App\Http\Controllers\NotesController@editNoteSubmit');

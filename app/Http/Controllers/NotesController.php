@@ -62,6 +62,23 @@ class NotesController extends Controller{
         }
         
     }
+
+    public function editNoteSubmit(Request $request){
+        $data = $request->data;
+       $id = Notes::submit($data);
+        if($id ){
+            return [
+                'status'=>'success',
+                'id'=>$id 
+            ];
+        }else{
+            return [
+                'status' => "false",
+                'error'=>'данные не обновлены'
+            ];
+        }
+        
+    }
     //динамически обновляет список для пагинации
     public function setOffset(Request $request){
         $data = $request->data;

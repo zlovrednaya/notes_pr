@@ -21,4 +21,25 @@ class DBOperate extends DB
         return $valId->id;
     }
 
+    public static function processData(&$data,$schema){
+
+        if(is_array($data)){
+            foreach($data as $key=>&$d){
+                if(isset($schema[$key])){
+                    switch($schema[$key]){
+                        case 'int':
+                            $d=(int)$d;
+                            break;
+                        case 'string':
+                                $d=str_replace('DROP TABLE','',$d);
+                                $d = addslashes($d);
+                            break;
+
+                    }
+                }
+                
+            }
+        }
+    }
+
 }

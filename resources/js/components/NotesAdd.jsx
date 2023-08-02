@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+/*import React, { Component } from 'react';
 import ReactDOM from 'react-dom/client';
 
 
@@ -23,11 +23,15 @@ class NotesAdd extends React.Component {
         console.log(43);
     }
 
+    handleSubmit(){
+
+    }
+
 	render() {
         const stateParams = this.state;
         /*
 		if(stateParams.isOpen){
-            const Form =  (<form action="/editnote/submit" method="get" class="form-left">
+            const Form =  (<form action="/editnote/submit" method="get" class="form-left" onSubmit={handleSubmit}>
             <span class="span-elt new">Редактировать заметку</span>
                 <input class="form-control pad-top" type="title" name="title" placeholder="Название" />
                 <input class="form-control pad-top" type="content" name="content" placeholder="Описание" />
@@ -36,7 +40,7 @@ class NotesAdd extends React.Component {
         } else{
             Form = (<div>eee</div>)
         }*/
-
+/*
 		return (
             123
         
@@ -49,4 +53,4 @@ if (document.getElementById('table_edit')) {
 }
 
 
-export default NotesAdd;
+export default NotesAdd;()*/
