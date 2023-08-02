@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import {  BrowserRouter as Router,Route, Routes} from "react-router-dom";
 import HelloReact from './components/HelloReact';
 import Home from "./components/Home";
-import Offset from "./components/Offset";
+import Offset from "./components/Offsetold";
 import axios from 'axios'
 
   class App extends React.Component {
