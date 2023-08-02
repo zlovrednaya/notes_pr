@@ -2,6 +2,7 @@
 import axios from "axios";
 import React, { Component,useState } from "react";
 import ReactDOM from 'react-dom';
+import PageModel from "./PageModel";
 
 
 class Offset extends Component {
@@ -24,7 +25,7 @@ class Offset extends Component {
         this.notifyServer(offset);
     };
 
-    /*notifyServer(offset){
+   async notifyServer(offset){
         let d = offset;
         const response = await axios.post("http://127.0.0.1:8000/offsetUpdate", {
             data:{offset: offset},
@@ -32,67 +33,41 @@ class Offset extends Component {
         .then((response) => {
         console.log(response);
         this.setState(() => ({
-            posts: response.data,
+            notes: response.data.notes,
             currentPage: response.data.offset,
-            pageCount: response.data.data.posts.last_page
+        
         }));
         });
 
-    };*/
+    };
 
  
 
-    render() {return (
-        <span class="span-elt do action-elt" id="offsetEl" offset={this.props.offsetData} onClick={this.handleIncrement.bind(this)}>next page></span>
+    render() {
+      //  const Notes = this.state.notes.map(note => (
+//			<NotesContent key={note.id} post={note} />
+//		));
+    
+
+        return (
+        <div>
+        <span class="span-elt do action-elt" id="offsetEl" onClick={this.handleIncrement}>next page>>></span>
+        
+        </div>
     );
     }
 }
-
-const handleIncrement = (params) => {
-
-    let offset=parseInt(params.currentTarget.getAttribute('offset'));
-    offset ++;
-    
-   const [count,setCount] = useState(0); // initialize state
-
-
-
-    notifyServer(offset);
-   // getNotesData();
-  }
-
-async function getNotesData(pageNum){
-    
-
-    try {
-        const url = 'http://127.0.0.1:8000/offsetUpdate?page=${pageNum}';
-        const response = await axios.post();
-       /* this.setState(() => ({
-            posts: response.data.notes,
-            currentPage: response.data.offset,
-        }));*/
-      } catch (error) {
-        console.log(error);
-      }
-
-}
+/*
+if (document.getElementById('react-pagination-button')) {
+	ReactDOM.render(
+        <span class="span-elt do action-elt" id="offsetEl" onClick={Offset.handleIncrement}>next page>></span>,
+		document.getElementById('react-pagination-button')
+	);
+}*/
 
 
 
-async function notifyServer (offset) {
-    let d = offset;
-    const response = await axios.post("http://127.0.0.1:8000/offsetUpdate", {
-        data:{offset: offset},
-    })
-    .then((response) => {
-      console.log(response);
-      this.setState(() => ({
-        posts: response.data,
-        currentPage: response.data.offset,
-        pageCount: response.data.data.posts.last_page
-      }));
-    });
-};
+
 
 /*function Offset(props) {
     return <span class="span-elt do action-elt" id="offsetEl" offset={props.offsetData} onClick={handleIncrement}>next page></span>;

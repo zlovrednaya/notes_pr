@@ -28,8 +28,8 @@
         <div class="table-container">
             @include('table') 
         </div>
-        <div id="react-pagination-list"></div>
-        <div id="offsetEl" offset="{{$currOffset}}">next page></span>
+        <div id="react-pagination-button"></div>
+      <div id="offsetEl" offset="{{$currOffset}}">next page></span>
     </div>
 
    

@@ -3,11 +3,13 @@ import ReactDOM from 'react-dom/client';
 import {  BrowserRouter as Router,Route, Routes} from "react-router-dom";
 import HelloReact from './components/HelloReact';
 import Home from "./components/Home";
-import Offset from "./components/Offsetold";
+import Offset from "./components/Offset";
+import PageModel from "./components/PageModel";
+import NotesContent from "./components/NotesContent";
 import axios from 'axios'
 
   class App extends React.Component {
-  
+
   
 
   }
@@ -24,6 +26,7 @@ const root = ReactDOM.createRoot(document.getElementById('body_part'))
 root.render(
       <Home />
 );
+
 
 const offsetElt = document.getElementById('offsetEl');
 if(offsetElt){
