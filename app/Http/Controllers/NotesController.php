@@ -1,6 +1,8 @@
 <?php
 namespace App\Http\Controllers;
 use App\Models\Notes;
+use Illuminate\Http\Request;
+
 class NotesController extends Controller{
     public function create(){
         //return view('welcome');
@@ -14,12 +16,54 @@ class NotesController extends Controller{
 
         //получить список заметок
 
-        $notes = Notes::getNotes();
+        $offset =1;
+        $notes = Notes::getNotes(10,$offset);
     
         
-        return view('welcome',['notes'=>$notes]);
+        return view('welcome',['notes'=>$notes,'currOffset'=>$offset]);
 
-        //return view('viewproducts', ['allProducts' => $products]);
+    
+    }
+
+    //динамически обновляет список для пагинации
+    public function setOffset(Request $request){
+        $data = $request->data;
+        if(isset($data['offset'])){
+        $offset=$data['offset'];
+        $notes = Notes::getNotes(10,$offset);
+        //return json_encode(array('statusCode'=>200));
+        //return view('table',['notes'=>$notes,'currOffset'=>$offset])->render();
+        $html = view('table', compact('notes'))->render();
+
+        return [
+            'status' => "success",
+            'data' => [
+                'notes' => $notes,
+                'offset' =>$offset
+            ]
+        ]; 
+       /* return response()->json(
+        
+            compact('html')
+        
+        );*/
+        }
+
+    }
+
+    public function store(Request $request) 
+    {
+    	/*$data = $request->validate([
+            'offset' => 'required',
+        ]);*/
+
+        $data = $request->data;
+        if(isset($data['offset'])){
+            return self::setOffset($data['offset']);
+            return response()->json(['success'=>'setOffset']);
+        } else {
+            return response()->json(['error'=>'no ajax processing']);
+        }
     }
 
 

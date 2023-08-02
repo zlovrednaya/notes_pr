@@ -14,10 +14,12 @@ class Notes extends Model {
        'description',
     ];
 
-    public static function getNotes($limit=false){
+    public static function getNotes($limit=false,$offset=1){
        $data =  DB::table(self::$table_class)
         ->select('*')
         ->orderBy('created_at','desc')
+        ->limit(($limit)?$limit:false)
+        ->offset($offset)
         ->get();
         return $data;
     }

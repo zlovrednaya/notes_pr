@@ -32,6 +32,13 @@ cursor: pointer;
 .span-elt.new{
     text-decoration: underline #cffeef;
 }
+.span-elt.do{
+    display: block;
+    text-align: center;
+    font-weight: bold;
+    font-size: 15px;
+    text-decoration: none;
+}
 .table-elt{
     width:100%;
     text-align: center;

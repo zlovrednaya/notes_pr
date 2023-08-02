@@ -18,3 +18,4 @@ use Illuminate\Support\Facades\Route;
 });*/
 
 Route::resource('/', 'App\Http\Controllers\NotesController');
+Route::Post('/offsetUpdate','App\Http\Controllers\NotesController@setOffset');

@@ -8,7 +8,7 @@ class Home extends Component {
     console.log(222);
     return (
       
-        <h1>Home</h1>
+        <h1>Home34</h1>
       
     );
   }

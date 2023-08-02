@@ -3,29 +3,36 @@ import ReactDOM from 'react-dom/client';
 import {  BrowserRouter as Router,Route, Routes} from "react-router-dom";
 import HelloReact from './components/HelloReact';
 import Home from "./components/Home";
+import Offset from "./components/Offset";
+import axios from 'axios'
 
   class App extends React.Component {
   
-   render() {
-    return (
-      
-        <Routes>
-          <Route path ="/" element={<Home />} />
-        </Routes>
-      
-    );
-   }  
+  
 
   }
 
 
-
-  const root = ReactDOM.createRoot(document.getElementById('body_part'))
+  /*const root = ReactDOM.createRoot(document.getElementById('body_part'))
   root.render(<React.StrictMode>
     <Router>
       <App params={123} />
       </Router>
-    </React.StrictMode>);
+    </React.StrictMode>);*/
+
+const root = ReactDOM.createRoot(document.getElementById('body_part'))
+root.render(
+      <Home />
+);
+
+const offsetElt = document.getElementById('offsetEl');
+if(offsetElt){
+    let offsetData = offsetElt.getAttribute('offset');
+        ReactDOM.createRoot(offsetElt).render(
+          <Offset offsetData={offsetData} />
+        );
+}
+
 
 /*
 тут большие датасеты - поэтому лучше это не делать так
@@ -47,6 +54,3 @@ if (document.getElementById('table-react')) {
 export default App;
 
 
-function add(){
-  alert(123132);
-}
