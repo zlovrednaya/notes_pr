@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom/client';
 //import NotesAdd from './NotesAdd';
+import Offset from './Offset';
 
 
 
@@ -48,13 +49,10 @@ class NotesAddButton extends React.Component {
         .then((response) => {
             console.log(response);
             if(response){
-                this.setState(() => ({
-                    notes: response.data.notes,
-                    currentPage: response.data.offset,
-                    count:response.data.offset
-                
+               this.setState(() => ({
+                setIsOpen: false
                 }));
-                console.log(this.state);
+            
             }
         });
 
@@ -76,6 +74,7 @@ class NotesAddButton extends React.Component {
                     <input class="form-control pad-top" type="content" name="content" placeholder="Описание" onChange={this.stContent.bind(this)}  />
                     <button type="submit" onClick={this.handleSubmit.bind(this)}  class="btn btn-primary pad-top" >Добавить</button>
             </form>
+        
             </div>
                 )
                 }

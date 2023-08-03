@@ -47,13 +47,14 @@ class Notes extends Model {
         DB::table('notes')->insert(
             [
                 'id'=>$nextVal ,
-                'title' => $data['title'], 
-                'content' => $data['content'],
+                'title' => isset($data['title'])?$data['title']:'', 
+                'content' => isset($data['content'])?$data['content']:'',
             
                 'created_at'=>DB::raw("date_trunc('hour', CURRENT_TIMESTAMP)")
             ]
         );
-        return $nextVal;
+
+        return self::getNotesById($nextVal);
      }
 
     //public static function all(){

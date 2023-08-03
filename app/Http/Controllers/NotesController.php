@@ -69,7 +69,7 @@ class NotesController extends Controller{
         if($id ){
             return [
                 'status'=>'success',
-                'id'=>$id 
+                'note'=>$id 
             ];
         }else{
             return [

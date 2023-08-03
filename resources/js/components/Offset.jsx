@@ -31,6 +31,11 @@ class Offset extends Component {
            
             this.notifyServer(offset);
         };
+    updateList(){
+        let offset = this.state.count ;
+        this.notifyServer(offset?offset:1);
+
+    }    
 
     handleIncrement(params){
       
@@ -86,8 +91,8 @@ class Offset extends Component {
              {Notes}
              </table>
              <span class="span-elt do action-elt" onClick={this.handleDecrement.bind(this)}> &#60;&#60;&#60;			previous page </span>
-           {this.state.currentPage}
-            <span class="span-elt do action-elt"  onClick={this.handleIncrement.bind(this)}>next page&#62;&#62;&#62;</span>
+             <span class="span-elt do">{this.state.currentPage}</span>
+             <span class="span-elt do action-elt"  onClick={this.handleIncrement.bind(this)}>next page&#62;&#62;&#62;</span>
         </div>
     );
     }
