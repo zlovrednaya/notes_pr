@@ -1,4 +1,4 @@
-//тут чисто обработка кнопки добавить
+l//тут чисто обработка кнопки добавить
 
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom/client';
@@ -21,13 +21,15 @@ class NotesAddButton extends React.Component {
 
     };
 
-    
 
     
     activateAddForm(){
+      
+       let state =  this.props.formCloser(true);
         this.setState(() => ({
-            setIsOpen:true
+            setIsOpen: state
           }))
+        
     }
 
     stTitle(event){
@@ -68,22 +70,19 @@ class NotesAddButton extends React.Component {
         const showForm = () => {
             this.state.setIsOpen
           };
-
+    
 		return (
             <div>
-                <span onClick={this.props.parentHandler}>нажми чтобы родителя вызывать</span>
-                <span class="span-elt new"><div class="action-elt" onClick={this.activateAddForm.bind(this)}>+ Добавить заметку</div></span>
-                {this.state.setIsOpen && (
+                <span class="span-elt new"><div class="action-elt" onClick={this.activateAddForm.bind(this)}>+ Добавить заметку {this.state.setIsOpen && (<span>close</span>)}</div></span>
+                {(this.state.setIsOpen && this.props.closeState)  && (
                     <div class="form-elt">
-                <form  method="post" class="form-left" >
-            
-                    <input class="form-control pad-top" type="title" name="title" placeholder="Название" onChange={this.props.formDataCollecter.bind(this)}  />
-                    <input class="form-control pad-top" type="content" name="content" placeholder="Описание" onChange={this.props.formDataCollecter.bind(this)}  />
-                    <button type="submit" onClick={this.props.parentHandler.bind(this)}  class="btn btn-primary pad-top" >Добавить</button>
-            </form>
-
-        
-            </div>
+                        <form  method="post" class="form-left" >
+                    
+                            <input class="form-control pad-top" type="title" name="title" placeholder="Название" onChange={this.props.formDataCollecter.bind(this)}  />
+                            <input class="form-control pad-top" type="content" name="content" placeholder="Описание" onChange={this.props.formDataCollecter.bind(this)}  />
+                            <button type="submit" onClick={this.props.parentHandler.bind(this)}  class="btn btn-primary pad-top" >Добавить</button>
+                        </form>
+                    </div>
                 )
                 }
           </div>
