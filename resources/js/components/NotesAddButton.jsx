@@ -7,7 +7,6 @@ import Offset from './Offset';
 
 
 
-
 class NotesAddButton extends React.Component {
 
     constructor(props) {

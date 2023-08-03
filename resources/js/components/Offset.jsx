@@ -5,6 +5,8 @@ import ReactDOM from 'react-dom';
 import PageModel from "./PageModel";
 import NotesContent from './NotesContent';
 
+import {ThemeContext} from './NotesAddButton';
+
 
 
 class Offset extends Component {
@@ -15,7 +17,8 @@ class Offset extends Component {
         this.state = {
             count: 1,
             notes:[],
-            currentPage:1
+            currentPage:1,
+            updateState: ThemeContext
         
         };
 
@@ -82,15 +85,19 @@ class Offset extends Component {
                 
                 
         ));
+
+        const updateList = useContext(ThemeContext);
     
 
 
         return (
         <div>
+            
+
              <table class="table-elt">
              {Notes}
              </table>
-             <span class="span-elt do action-elt" onClick={this.handleDecrement.bind(this)}> &#60;&#60;&#60;			previous page </span>
+             <span class="span-elt do action-elt top" onClick={this.handleDecrement.bind(this)}> &#60;&#60;&#60;			previous page </span>
              <span class="span-elt do">{this.state.currentPage}</span>
              <span class="span-elt do action-elt"  onClick={this.handleIncrement.bind(this)}>next page&#62;&#62;&#62;</span>
         </div>

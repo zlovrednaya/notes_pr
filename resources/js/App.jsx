@@ -8,7 +8,11 @@ import PageModel from "./components/PageModel";
 //import NotesAdd from "./components/NotesAdd";
 import NotesContent from "./components/NotesContent";
 import NotesAddButton from "./components/NotesAddButton";
-import axios from 'axios'
+import axios from 'axios';
+import { createContext } from "react";
+export const ThemeContext = createContext("Default Value");
+
+
 
   class App extends React.Component {
 
