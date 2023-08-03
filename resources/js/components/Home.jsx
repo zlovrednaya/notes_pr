@@ -5,7 +5,6 @@ import ReactDOM from 'react-dom';
 class Home extends Component {
   
   render() {
-    console.log(222);
     return (
       
         <h1 class="h-center">Notespro | Заметки</h1>

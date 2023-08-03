@@ -2,71 +2,27 @@
 import axios from "axios";
 import React, { Component,useState } from "react";
 import ReactDOM from 'react-dom';
-
+import PageModel from "./PageModel";
 import NotesContent from './NotesContent';
-import NotesAddButton from './NotesAddButton';
 
 
 
 
-class Offset extends Component {
+
+class NotesComponent extends Component {
   
     constructor(props) {
         super(props);
 
-        let offset =0;
         this.state = {
-            count: offset,
+            count: 1,
             notes:[],
             currentPage:1,
-            formData:[]
          
         
         };
 
-        //первая страничка
-        this.notifyServer(offset);
-
-        this.parentHandler = this.parentHandler.bind(this);
-        this.formDataCollecter = this.formDataCollecter.bind(this);
-
-
-
     };
-
-
-    formDataCollecter(event){
-        var formData=this.state.formData;
-        let eltName = event.currentTarget.name;
-        let eltValue =  event.currentTarget.value;
-        formData[eltName] =eltValue;
-        this.setState(()=>{
-            formData:formData
-        });
-
-    }
-
-    async parentHandler(event){
-        event.preventDefault();
-    
-        let formData = this.state.formData;
-        const response = await axios.post("http://127.0.0.1:8000/editnote/submit", {
-            data:formData,
-        })
-        .then((response) => {
-            console.log(response);
-            if(response){
-               this.setState(() => ({
-                setIsOpen: false
-                }));
-
-            
-            }
-        });
-
-        
-
-    }  
 
     handleDecrement(params){
       
@@ -78,7 +34,11 @@ class Offset extends Component {
            
             this.notifyServer(offset);
         };
-      
+    updateList(){
+        let offset = this.state.count ;
+        this.notifyServer(offset?offset:1);
+
+    }    
 
     handleIncrement(params){
       
@@ -91,7 +51,7 @@ class Offset extends Component {
         this.notifyServer(offset);
     };
 
-    async notifyServer(offset){
+   async notifyServer(offset){
         let d = offset;
         const response = await axios.post("http://127.0.0.1:8000/offsetUpdate", {
             data:{offset: offset},
@@ -133,18 +93,16 @@ class Offset extends Component {
         return (
         <div>
             
-             <NotesAddButton parentHandler={this.parentHandler} formDataCollecter={this.formDataCollecter} />
+
              <table class="table-elt">
-                {Notes}
+             {Notes}
              </table>
-             <div class="pages-elt">
-                <span class="span-elt do action-elt" onClick={this.handleDecrement.bind(this)}> &#60;&#60;&#60;	 </span>
-                <span class="span-elt do">{this.state.currentPage +1}</span>
-                <span class="span-elt do action-elt"  onClick={this.handleIncrement.bind(this)}>&#62;&#62;&#62;</span>
-             </div>
+             <span class="span-elt do action-elt top" onClick={this.handleDecrement.bind(this)}> &#60;&#60;&#60;			previous page </span>
+             <span class="span-elt do">{this.state.currentPage}</span>
+             <span class="span-elt do action-elt"  onClick={this.handleIncrement.bind(this)}>next page&#62;&#62;&#62;</span>
         </div>
     );
     }
 }
 
-export default Offset;
+export default NotesComponent;

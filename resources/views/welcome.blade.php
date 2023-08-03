@@ -24,11 +24,9 @@
 
 
     <div id="table_part">
-        <span class="span-elt">Список заметок</span>
+        <span class="span-elt title">Список заметок</span>
         <div id="add_part"></div>
-        <div class="table-container" >
-            @include('table') 
-        </div>
+    
         <div id="react-pagination-button"></div>
       <div id="offsetEl" offset="{{$currOffset}}">next page></div>
     </div>
