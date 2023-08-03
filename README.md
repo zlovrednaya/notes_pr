@@ -11,3 +11,5 @@ views: resources->views
 JS
 resources->js
 
+
+дамп базы данных в dombdb.txt
