@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use DB;
+use DateTime;
 
 class Notes extends Model {
     public static $fieldsDBdata=[
@@ -34,6 +35,7 @@ class Notes extends Model {
          ->select('*')
          ->where('id',(int)$id)
          ->get();
+
          return $data[0];
      }
 
@@ -49,6 +51,7 @@ class Notes extends Model {
                 [
                     'title' => isset($data['title'])?$data['title']:'', 
                     'content' => isset($data['content'])?$data['content']:'',
+                    'created_at' =>$data['created_at'],
                 ]
             );
         }else{
@@ -60,11 +63,12 @@ class Notes extends Model {
                     'title' => isset($data['title'])?$data['title']:'', 
                     'content' => isset($data['content'])?$data['content']:'',
                 
-                    'created_at'=>now()
+                    'created_at'=>(new DateTime())->format('Y-m-d H:i:s')
                 ]
             );
         }
 
+        
         return self::getNotesById($id);
      }
 
