@@ -22,8 +22,12 @@ class Offset extends Component {
             formData:{},
             setIsOpen:false,
             editNote:false,
-            confirmToDeleteForm:false,
+            
             noteData:[],
+
+            confirmToDeleteForm:false,
+            deleteId:false,
+            closeDeleteForm:false,
         
             
         
@@ -71,24 +75,40 @@ class Offset extends Component {
 
     confirmationActionHere(event){
 
-    
 
         this.setState(() => ({
             confirmToDeleteForm:true,
+            deleteId:event.target.getAttribute('data-value')
     
           }));
     }
-    confirmationAction(event){
+    async confirmAction(event){
+        let id = event.target.getAttribute('data-id');
 
-        this.setState(() => ({
-            confirmToDeleteForm:true,
-    
-          }));
+        const response = await axios.post("http://127.0.0.1:8000/deletenote/submit", {
+            data:{id:id},
+        })
+        .then((response) => {
+            console.log(response);
+            if(response){
+               
+                    //обновить списочек - откроем первую страницу
+                    this.notifyServer(0);
+                    this.setState(() => ({
+                        confirmToDeleteForm:false 
+                      }
+                    ));
+              
+
+            
+            }
+        });
     }
+
     stopAction(event){
 
         this.setState(() => ({
-            confirmToDeleteForm:true,
+            confirmToDeleteForm:false 
     
           }));
     }
@@ -259,6 +279,7 @@ class Offset extends Component {
             <ConfirmationForm
                 confirmAction={this.confirmAction} 
                 stopAction={this.stopAction} 
+                id={this.state.deleteId}
             />
         );
         

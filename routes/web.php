@@ -29,3 +29,4 @@ Route::Post('/editnote','App\Http\Controllers\NotesController@editNote');
 Route::Post('/delnote','App\Http\Controllers\NotesController@delNote');
 
 Route::Post('/editnote/submit','App\Http\Controllers\NotesController@editNoteSubmit');
+Route::Post('/deletenote/submit','App\Http\Controllers\NotesController@deleteNoteSubmit');

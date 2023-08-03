@@ -39,6 +39,15 @@ class Notes extends Model {
          return $data[0];
      }
 
+     public static function deleteData($id){
+        $DBOperateModel= new DBOperate;
+        $DBOperateModel::processData($data,self::$fieldsDBdata);
+        DB::table('notes')
+        ->where('id',(int)$id)
+        ->delete();
+        return true;
+     }
+
      public static function submit($data,$update=false){
 
         $DBOperateModel= new DBOperate;

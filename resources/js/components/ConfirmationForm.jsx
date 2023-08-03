@@ -18,13 +18,12 @@ class ConfirmationForm extends Component {
     render() {
         return(
            <div>
-            <form  method="post" class="form-left">
-                <span>Вы уверены, что хотите удалить заметку?</span>
+            
+                <span class="span-elt">Вы уверены, что хотите удалить заметку?</span>
                 <div class="form-elt">
-                <button class="btn btn-light" onClick={this.props.confirmAction.bind(this)}>Да</button>
-                <button class="btn btn-danger"  onClick={this.props.stopAction.bind(this)}>Нет</button>
-                </div>
-            </form>
+                <button type="submit" class="btn btn-light" data-id={this.props.id} onClick={this.props.confirmAction.bind(this)}>Да</button>
+                <button type="submit" class="btn btn-danger" onClick={this.props.stopAction.bind(this)}>Нет</button>
+               </div>
            </div>
    
         )

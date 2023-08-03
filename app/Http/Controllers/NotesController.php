@@ -121,6 +121,19 @@ class NotesController extends Controller{
         }
         
     }
+
+    public function deleteNoteSubmit(Request $request){
+        $data = $request->data;
+        if(isset($data['id'])){
+
+            Notes::deleteData($data['id']);
+        }
+        return [
+            'status'=>'данные удалены',
+            'id'=>$data['id']
+        ];
+
+    }
     //динамически обновляет список для пагинации
     public function setOffset(Request $request){
         $data = $request->data;
