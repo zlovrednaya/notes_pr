@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom/client';
 
 import {  BrowserRouter as Router,Route, Routes} from "react-router-dom";
-import HelloReact from './components/HelloReact';
+//import HelloReact from './components/HelloReact';
 import Home from "./components/Home";
 import Offset from "./components/Offset";
 //import NotesAdd from "./components/NotesAdd";
 import NotesContent from "./components/NotesContent";
 import NotesAddButton from "./components/NotesAddButton";
 import NotesForm from "./components/NotesForm";
+import ConfirmationForm from './components/ConfirmationForm';
 import axios from 'axios';
 import { createContext } from "react";
 export const ThemeContext = createContext("Default Value");

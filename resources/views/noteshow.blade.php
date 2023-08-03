@@ -23,15 +23,15 @@
 
 
     <div id="table_part">
-    @foreach ($note as $n)
-        <span class="span-elt">Заметка # {{ $n->id }}</span>
+    
+        <span class="span-elt">Заметка # {{ $note->id }}</span>
     
         <div class="div-pad">
-            <span class="span-elt-text">Название: {{ $n->title }}</span>
-            <span class="span-elt-text">Описание: {{ $n->content }}</span>
-            <span class="span-elt-text">Создана: {{ $n->created_at }}</span>
+            <span class="span-elt-text">Название: {{ $note->title }}</span>
+            <span class="span-elt-text">Описание: {{ $note->content }}</span>
+            <span class="span-elt-text">Создана: {{ $note->created_at }}</span>
         </div>
-        @endforeach   
+        
     </div>
    
    

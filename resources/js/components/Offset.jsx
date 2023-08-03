@@ -6,8 +6,7 @@ import ReactDOM from 'react-dom';
 import NotesContent from './NotesContent';
 import NotesAddButton from './NotesAddButton';
 import NotesForm from './NotesForm';
-
-
+import ConfirmationForm from './ConfirmationForm';
 
 
 class Offset extends Component {
@@ -23,8 +22,11 @@ class Offset extends Component {
             formData:{},
             setIsOpen:false,
             editNote:false,
+            confirmToDeleteForm:false,
             noteData:[],
-         
+        
+            
+        
         };
 
         //первая страничка
@@ -33,6 +35,9 @@ class Offset extends Component {
         this.formDataCollecter = this.formDataCollecter.bind(this);
         this.formCloser = this.formCloser.bind(this);
         this.formEditor = this.formEditor.bind(this);
+        this.confirmationActionHere = this.confirmationActionHere.bind(this);
+        this.confirmAction = this.confirmAction.bind(this);
+        this.stopAction = this.stopAction.bind(this);
 
     };
 
@@ -64,6 +69,30 @@ class Offset extends Component {
 
     }
 
+    confirmationActionHere(event){
+
+    
+
+        this.setState(() => ({
+            confirmToDeleteForm:true,
+    
+          }));
+    }
+    confirmationAction(event){
+
+        this.setState(() => ({
+            confirmToDeleteForm:true,
+    
+          }));
+    }
+    stopAction(event){
+
+        this.setState(() => ({
+            confirmToDeleteForm:true,
+    
+          }));
+    }
+
     
     async formEditor(event){
         let id = parseInt(event.target.getAttribute('data-value'));
@@ -84,7 +113,7 @@ class Offset extends Component {
                     formData:response.data.note,
                     setIsOpen:true 
                   }
-                ))
+                ));
                 //открыть форму
                this.showForm(action);
                
@@ -205,6 +234,7 @@ class Offset extends Component {
                     link ={'/notes?id = '+note.id}
                     created_at={note.created_at} 
                     formEditor={this.formEditor}
+                    confirmationActionHere={this.confirmationActionHere}
                 />
                 
                 
@@ -223,6 +253,16 @@ class Offset extends Component {
             />
         );
 
+        let confirm = this.state.confirmToDeleteForm;
+        const Confirmation =  (
+            
+            <ConfirmationForm
+                confirmAction={this.confirmAction} 
+                stopAction={this.stopAction} 
+            />
+        );
+        
+
 
 
 
@@ -236,6 +276,7 @@ class Offset extends Component {
                 closeState={this.formCloser()}
              />
 
+            {this.state.confirmToDeleteForm && Confirmation}
             {this.state.editNote && NoteForm}
            
              

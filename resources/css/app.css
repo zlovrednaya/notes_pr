@@ -99,16 +99,17 @@ cursor: pointer;
 
 .inner-table-0{
     width:10%;
-    border-right: 1px solid #eeecff ;
+   /* border-right: 1px solid #eeecff ;*/
 }
 .inner-table-1{
     width:60%;
-    border-right: 1px solid #eeecff ;
-    
+    /* border-right: 1px solid #eeecff ;*/
 }
+    
+
 .inner-table-2{
     width:100%;
-    border-right: 1px solid #eeecff ;
+   /* border-right: 1px solid #eeecff ;*/
 }
 .inner-table-3{
     width:10%;

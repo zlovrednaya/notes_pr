@@ -38,7 +38,9 @@ class NotesForm extends Component {
     render() {
         return(
             <div>
+                {(this.state.setIsOpen && this.props.closeState)  && (
             <span class="span-elt new"><div class="action-elt" onClick={this.showCloseForm.bind(this)} >Редактировать заметку  {this.state.setIsOpen && (<span>close</span>)}</div></span>
+                )}
             {(this.state.setIsOpen && this.props.closeState)  && (
                 <div class="form-elt">
                     <form  method="post" class="form-left" >
