@@ -1,4 +1,4 @@
-l//тут чисто обработка кнопки добавить
+//тут чисто обработка кнопки добавить
 
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom/client';

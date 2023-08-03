@@ -54,7 +54,7 @@ async function req(id,type,callback){
 
 
 const NotesContent = (props) => (
-  
+   
     <tr class="tr-table" key="{props.id}">
                     <td class="inner-table-0"># {props.id}</td>
                     <td class="inner-table-1">{props.title}</td>

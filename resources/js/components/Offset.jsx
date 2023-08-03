@@ -19,7 +19,8 @@ class Offset extends Component {
             count: offset,
             notes:[],
             currentPage:1,
-            formData:[]
+            formData:{},
+            setIsOpen:false,
          
         
         };
@@ -29,6 +30,7 @@ class Offset extends Component {
 
         this.parentHandler = this.parentHandler.bind(this);
         this.formDataCollecter = this.formDataCollecter.bind(this);
+        this.formCloser = this.formCloser.bind(this);
 
 
 
@@ -46,25 +48,41 @@ class Offset extends Component {
 
     }
 
+    formCloser(changeState){
+        if(changeState) {
+            this.setState(() => ({
+                setIsOpen: !this.state.setIsOpen
+            }));
+            return !this.state.setIsOpen;
+        }else{
+            if(this.state.setIsOpen){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+    }
+
     async parentHandler(event){
         event.preventDefault();
     
-        let formData = this.state.formData;
+        let data = this.state.formData;
         const response = await axios.post("http://127.0.0.1:8000/editnote/submit", {
-            data:formData,
+            data,
         })
         .then((response) => {
             console.log(response);
             if(response){
                this.setState(() => ({
-                setIsOpen: false
+                    setIsOpen: false
                 }));
+                //обновить списочек - откроем первую страницу
+                this.notifyServer(0);
 
             
             }
         });
-
-        
 
     }  
 
@@ -114,17 +132,18 @@ class Offset extends Component {
 
     render() {
         
-        const Notes= this.state.notes.map((note) => (
+        const Notes= this.state.notes?this.state.notes.map((note) => (
             
                 <NotesContent 
-                key={note.id}
-                id = {note.id}
-                title={note.title}
-                link ={'/notes?id = '+note.id}
-                created_at={note.created_at}    />
+                    key={note.id}
+                    id = {note.id}
+                    title={note.title}
+                    link ={'/notes?id = '+note.id}
+                    created_at={note.created_at} 
+                />
                 
                 
-        ));
+        )):null;
 
     
     
@@ -133,7 +152,12 @@ class Offset extends Component {
         return (
         <div>
             
-             <NotesAddButton parentHandler={this.parentHandler} formDataCollecter={this.formDataCollecter} />
+             <NotesAddButton 
+                parentHandler={this.parentHandler} 
+                formDataCollecter={this.formDataCollecter} 
+                formCloser={this.formCloser}
+                closeState={this.formCloser()}
+             />
              <table class="table-elt">
                 {Notes}
              </table>
