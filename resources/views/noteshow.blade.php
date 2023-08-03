@@ -25,7 +25,7 @@
     <div id="table_part">
     @foreach ($note as $n)
         <span class="span-elt">Заметка # {{ $n->id }}</span>
-        <span class="span-elt new">Редактировать</span>
+    
         <div class="div-pad">
             <span class="span-elt-text">Название: {{ $n->title }}</span>
             <span class="span-elt-text">Описание: {{ $n->content }}</span>

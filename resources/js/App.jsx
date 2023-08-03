@@ -7,6 +7,7 @@ import Offset from "./components/Offset";
 //import NotesAdd from "./components/NotesAdd";
 import NotesContent from "./components/NotesContent";
 import NotesAddButton from "./components/NotesAddButton";
+import NotesForm from "./components/NotesForm";
 import axios from 'axios';
 import { createContext } from "react";
 export const ThemeContext = createContext("Default Value");

@@ -32,23 +32,11 @@ class NotesAddButton extends React.Component {
         
     }
 
-    stTitle(event){
-        this.setState(() => ({
-            title:event.target.value
-          }))
-    }
-    stContent(event){
-        this.setState(() => ({
-            content:event.target.value
-          }))
-    }
 
+    //todo перенести в parent->offset
    async handleSubmit(event) {
         event.preventDefault();
-        
-    
-       
-    
+     
         const response = await axios.post("http://127.0.0.1:8000/editnote/submit", {
             data:{title: this.state.title,content:this.state.content},
         })

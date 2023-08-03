@@ -33,8 +33,36 @@ class NotesController extends Controller{
         }
         
     }
-    public function showNote(Request $request){
+
+    public function revealId($request){
         $id = $request->id;
+        if(!$id){
+            $request_data = $request->data;
+            if(isset( $request_data['id'])){
+                $id =  $request_data['id'];
+            }
+        }
+        return $id;
+    }
+
+    public function getNote(Request $request){
+        $id = $this->revealId($request);
+        if($id){
+            $note = Notes::getNotesById($id);
+            return [
+                'status'=>'success',
+                'note'=> $note
+            ];
+        }else{
+            return [
+                'status' => "false",
+                'error'=>'нет данных'
+            ];
+        }
+    }
+
+    public function showNote(Request $request){
+        $id = $this->revealId($request);
         if($id){
             $note = Notes::getNotesById($id);
             return view('noteshow',['note'=>$note]);
@@ -44,6 +72,7 @@ class NotesController extends Controller{
                 'error'=>'нет данных'
             ];
         }
+    
         
     }
 
@@ -63,15 +92,28 @@ class NotesController extends Controller{
         
     }
 
+    // можно работать с add и edit
+    //определяем по наличию или отсуствию id
     public function editNoteSubmit(Request $request){
         $data = $request->data;
-       $id = Notes::submit($data);
-        if($id ){
+    
+        
+        if(!isset($data['id'] )){
+            //edit
+            $update = false;
+            
+        }else{
+             //add
+            $update = true;
+        }
+
+        $note = Notes::submit($data,$update);
+        if( $note){
             return [
                 'status'=>'success',
-                'note'=>$id 
+                'note'=>$note
             ];
-        }else{
+        } else{
             return [
                 'status' => "false",
                 'error'=>'данные не обновлены'

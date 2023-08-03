@@ -1,4 +1,5 @@
 // frontent/src/components/Home.js
+/*
 import axios from "axios";
 import React, { Component,useState } from "react";
 import ReactDOM from 'react-dom';
@@ -106,3 +107,4 @@ class NotesComponent extends Component {
 }
 
 export default NotesComponent;
+*/

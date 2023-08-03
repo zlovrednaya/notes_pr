@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 
 import NotesContent from './NotesContent';
 import NotesAddButton from './NotesAddButton';
+import NotesForm from './NotesForm';
 
 
 
@@ -21,18 +22,17 @@ class Offset extends Component {
             currentPage:1,
             formData:{},
             setIsOpen:false,
+            editNote:false,
+            noteData:[],
          
-        
         };
 
         //первая страничка
         this.notifyServer(offset);
-
         this.parentHandler = this.parentHandler.bind(this);
         this.formDataCollecter = this.formDataCollecter.bind(this);
         this.formCloser = this.formCloser.bind(this);
-
-
+        this.formEditor = this.formEditor.bind(this);
 
     };
 
@@ -64,11 +64,73 @@ class Offset extends Component {
 
     }
 
+    
+    async formEditor(event){
+        let id = parseInt(event.target.getAttribute('data-value'));
+        let action = event.target.getAttribute('data-action');
+        this.activateForm({id:id},action);
+        
+    }
+
+    async activateForm(data,action){
+        //пойти на сервер
+        //получить данные
+        const response = await axios.post("http://127.0.0.1:8000/note", {
+            data,
+        })
+        .then((response) => {
+            if(response){
+                this.setState(() => ({
+                    formData:response.data.note,
+                    setIsOpen:true 
+                  }
+                ))
+                //открыть форму
+               this.showForm(action);
+               
+            }
+        });
+    }
+
+
+    showForm(action){
+        const actionVar=[];
+        
+        //когданибудь можно сделать универсальным но не сегодня
+        this.setState(() => ({
+            editNote:true 
+          }
+        ))
+    }
+
+
+    async getDataRequest(data){
+            
+        
+        const response = await axios.post("http://127.0.0.1:8000/note", {
+            data,
+        })
+        .then((response) => {
+            //none
+        });
+
+    }
+
+    //связан с NotesAddButton
     async parentHandler(event){
         event.preventDefault();
     
+        this.listAjaxRequest('edit',true);
+
+    }  
+
+    
+    //обработка запросов на изменение к серверу
+    async listAjaxRequest(type,action){
+        
         let data = this.state.formData;
-        const response = await axios.post("http://127.0.0.1:8000/editnote/submit", {
+        
+        const response = await axios.post("http://127.0.0.1:8000/"+type+"note/submit", {
             data,
         })
         .then((response) => {
@@ -77,14 +139,16 @@ class Offset extends Component {
                this.setState(() => ({
                     setIsOpen: false
                 }));
-                //обновить списочек - откроем первую страницу
-                this.notifyServer(0);
+                if(action){
+                    //обновить списочек - откроем первую страницу
+                    this.notifyServer(0);
+                }
 
             
             }
         });
 
-    }  
+    }
 
     handleDecrement(params){
       
@@ -92,7 +156,7 @@ class Offset extends Component {
         offset--;
             this.setState(() => ({
                   count:offset 
-                }))
+                }));
            
             this.notifyServer(offset);
         };
@@ -140,13 +204,26 @@ class Offset extends Component {
                     title={note.title}
                     link ={'/notes?id = '+note.id}
                     created_at={note.created_at} 
+                    formEditor={this.formEditor}
                 />
                 
                 
         )):null;
+        let formData = this.state.formData;
+        const NoteForm =  (
+            
+            <NotesForm 
+                id={formData.id}
+                title={formData.title}
+                content={formData.content}
+                formDataCollecter={this.formDataCollecter} 
+                parentHandler={this.parentHandler} 
+                formCloser={this.formCloser}
+                closeState={this.formCloser()}
+            />
+        );
 
-    
-    
+
 
 
         return (
@@ -158,6 +235,10 @@ class Offset extends Component {
                 formCloser={this.formCloser}
                 closeState={this.formCloser()}
              />
+
+            {this.state.editNote && NoteForm}
+           
+             
              <table class="table-elt">
                 {Notes}
              </table>

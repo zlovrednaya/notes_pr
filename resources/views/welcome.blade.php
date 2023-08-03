@@ -24,7 +24,7 @@
 
 
     <div id="table_part">
-        <span class="span-elt title">Список заметок</span>
+
         <div id="add_part"></div>
     
         <div id="react-pagination-button"></div>

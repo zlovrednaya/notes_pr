@@ -77,7 +77,7 @@ cursor: pointer;
    
 }
 .span-elt.new{
-    text-decoration: underline #cffeef;
+    text-decoration: underline #ff006b6e;
 }
 .span-elt.do{
     display: block;
@@ -85,7 +85,7 @@ cursor: pointer;
     font-weight: bold;
     font-size: 15px;
     text-decoration: none;
-    color:#c0b9ff ;
+    color:#2d90d5; ;
     margin: 5px;
 }
 
@@ -112,11 +112,15 @@ cursor: pointer;
 }
 .inner-table-3{
     width:10%;
+    color:#ff006b6e;
 }
 .inner-table-4{
     width:10%;
+   
+    color:#ff9c9c;
 }
 
 .a-elt{
     color:#2d90d5;
+    
 }

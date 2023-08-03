@@ -34,27 +34,38 @@ class Notes extends Model {
          ->select('*')
          ->where('id',(int)$id)
          ->get();
-         return $data;
+         return $data[0];
      }
 
-     public static function submit($data){
-
-
+     public static function submit($data,$update=false){
 
         $DBOperateModel= new DBOperate;
         $DBOperateModel::processData($data,self::$fieldsDBdata);
-        $nextVal =$DBOperateModel->checkMaxPrimaryKey(self::$table_class) +1;
-        DB::table('notes')->insert(
-            [
-                'id'=>$nextVal ,
-                'title' => isset($data['title'])?$data['title']:'', 
-                'content' => isset($data['content'])?$data['content']:'',
-            
-                'created_at'=>DB::raw("date_trunc('hour', CURRENT_TIMESTAMP)")
-            ]
-        );
+        if($update){
+            $id = $data['id'];
+            DB::table('notes')
+            ->where('id',(int)$id)
+            ->update(
+                [
+                    'title' => isset($data['title'])?$data['title']:'', 
+                    'content' => isset($data['content'])?$data['content']:'',
+                ]
+            );
+        }else{
+       
+            $id =$DBOperateModel->checkMaxPrimaryKey(self::$table_class) +1;
+            DB::table('notes')->insert(
+                [
+                    'id'=>$id ,
+                    'title' => isset($data['title'])?$data['title']:'', 
+                    'content' => isset($data['content'])?$data['content']:'',
+                
+                    'created_at'=>now()
+                ]
+            );
+        }
 
-        return self::getNotesById($nextVal);
+        return self::getNotesById($id);
      }
 
     //public static function all(){
