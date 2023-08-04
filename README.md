@@ -15,10 +15,11 @@ resources->js
 дамп базы данных в dombdb.txt
 
 
-screenshootes 
+Screenshotes
 http://joxi.ru/YmEQxgoFLabeKm
 http://joxi.ru/bmoP4RXtlENkJ2 
 http://joxi.ru/D2PO5goTW4jl0m
 http://joxi.ru/xAe9qyWtVaJ70A
 http://joxi.ru/1A5lPLkUwO0pn2
 http://joxi.ru/Y2LZJlotvVwbMr
+
